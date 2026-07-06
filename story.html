@@ -6,87 +6,241 @@
 <title>Story de Leituras - Editorial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;500;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;500;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-/* ================= RESET & DESIGN SYSTEM ================= */
+/* ================= 1. RESET & DESIGN SYSTEM ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-}
-body,
-select,
-button,
-.header h1,
-.stat-val {
-    font-family: var(--font-main) !important;
-    
-}
-/* Dark Academia */
-.theme-coffee {
-    --bg-dark: #080503;
-    --bg-card: #1d140f;
-    --text-light: #f5e6d2;
-    --accent: #d1782e;
-    --accent-muted: #3d1f11;
-    --font-main: 'Libre Baskerville', serif;
-}
-
-/* Velvet (Roxo + Vinho) */
-.theme-velvet {
-    --bg-dark: #190b24;
-    --bg-card: #2d123e;
-    --text-light: #f8f3fb;
-    --accent: #d94f70;
-    --accent-muted: #6d3bb3;
-    --font-main: 'Playfair Display', serif;
-}
-
-/* Editorial Azul Escuro */
-.theme-Ocean {
-    --bg-dark: #010a27;
-    --bg-card: #06143d;
-    --text-light: #f4f7fb;
-    --accent: #28a8a6;
-    --accent-muted: #3a506b;
-    --font-main: 'Libre Baskerville', serif;
-}
-
-/* Coral Moderno */
-.theme-lavender {
-    --bg-dark: #fff2ed;
-    --bg-card: #ffffff;
-    --text-light: #47342d;
-    --accent: #ff6b6b;
-    --accent-muted: #fffac9;
-    --font-main: 'Calibri', sans-serif;
-}
-
-/* Cyber Blue */
-.theme-pastel-rainbow {
-    --bg-dark: #070b18;
-    --bg-card: #111827;
-    --text-light: #f8fafc;
-    --accent: #7c3aed;
-    --accent-muted: #38bdf8;
-    --font-main: 'Orbitron', sans-serif;
 }
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    font-family: 'Rubik', sans-serif;
+    background: #f4f1ea;
+    color: #382b22;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+    gap: 40px;
+}
+
+#canvas-wrapper,
+#canvas-wrapper select,
+#canvas-wrapper button,
+.header h1,
+.stat-val {
+    font-family: var(--font-main) !important;
+}
+
+/* ================= 2. CONFIGURAÇÃO DOS TEMAS ================= */
+/* Dark Academia — Verde Floresta / Petróleo */
+.theme-coffee {
+    --bg-dark: #030806;
+    --bg-card: #0f1d1a;
+    --text-light: #d2f5ed;
+    --accent: #2b8a82;
+    --accent-muted: #24464e;
+    --font-main: 'Libre Baskerville', serif;
+}
+/* Rose Gold — Vinho suave, romântico */
+.theme-rosegold {
+    --bg-dark: #2b1a1c;
+    --bg-card: #3f2427;
+    --text-light: #fbe9e7;
+    --accent: #eea2a2;
+    --accent-muted: #9c5e5e;
+    --font-main: 'Garamond', serif;
+}
+/* Roxito — Tons escuros, roxo profundo */
+.theme-Roxito {
+    --bg-dark: #1c1224;
+    --bg-card: #4b3066;
+    --text-light: #ece4f5;
+    --accent: #a97fd4;
+    --accent-muted: #3d2b52;
+    --font-main: 'Poppins', sans-serif;
+}
+/* Jornal Impresso — Preto e branco editorial */
+.theme-newspaper {
+    --bg-dark: #e8e4d8;
+    --bg-card: #f5f2e9;
+    --text-light: #1a1a1a;
+    --accent: #8b0000;
+    --accent-muted: #6b6b6b;
+    --font-main: 'Libre Baskerville', serif;
+}
+/* Rosita — Rosa-claro, delicado */
+.theme-Rosita {
+    --bg-dark: #fdf0f3;
+    --bg-card: #ffffff;
+    --text-light: #4a2c33;
+    --accent: #e8879e;
+    --accent-muted: #f4c6d1;
+    --font-main: 'Cardo', serif;
+}
+
+/* ================= 3. LAYOUT GERAL & SIDEBAR ================= */
+.app-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.theme-sidebar {
+    width: 175px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 24px 16px;
+    border-radius: 16px;
+    border: 2px solid #e5ded4;
+    position: sticky;
+    top: 30px;
+    gap: 20px;
+}
+
+.theme-sidebar h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a3988c;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.theme-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ================= 4. BOTÕES & SELETORES 3D ================= */
+.theme-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    padding: 0.65em 1em;
+    border-radius: 0.5em;
+    background: var(--btn-light);
+    color: var(--btn-text);
+    border: 1.5px solid var(--btn-border);
+    transform-style: preserve-3d;
+    transition: transform 120ms cubic-bezier(0, 0, 0.58, 1), background 120ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.theme-btn::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--btn-dark);
+    border-radius: inherit;
+    box-shadow: 0 0 0 1.5px var(--btn-border), 0 0.3em 0 0 var(--btn-shadow);
+    transform: translate3d(0, 0.35em, -1em);
+    transition: transform 120ms cubic-bezier(0, 0, 0.58, 1), box-shadow 120ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+/* Unificação dos estados de Hover e Active para Botões e Selects 3D */
+.theme-btn:hover, 
+.select-3d-wrapper:hover {
+    background: var(--btn-hover);
+    transform: translate(0, 0.12em);
+}
+
+.theme-btn:hover::before, 
+.select-3d-wrapper:hover::before {
+    box-shadow: 0 0 0 1.5px var(--btn-border), 0 0.22em 0 0 var(--btn-shadow);
+    transform: translate3d(0, 0.22em, -1em);
+}
+
+.theme-btn.active {
+    background: var(--btn-hover);
+    transform: translate(0, 0.35em);
+}
+
+.theme-btn.active::before {
+    box-shadow: 0 0 0 1.5px var(--btn-border), 0 0 var(--btn-shadow);
+    transform: translate3d(0, 0, -1em);
+}
+
+/* Mapeamento de Cores dos Botões */
+.btn-coffee {
+    --btn-light: #0f1d1a;   --btn-dark: #2b8a82;   --btn-border: #2b8a82;
+    --btn-shadow: #24464e;  --btn-hover: #24464e;  --btn-text: #d2f5ed;
+}
+.btn-rosegold {
+    --btn-light: #3f2427;   --btn-dark: #e0a89a;   --btn-border: #e0a89a;
+    --btn-shadow: #9c6b5e;  --btn-hover: #9c6b5e;  --btn-text: #fbe9e7;
+}
+.btn-Roxito {
+    --btn-light: #2a1c38;   --btn-dark: #a97fd4;   --btn-border: #a97fd4;
+    --btn-shadow: #3d2b52;  --btn-hover: #3d2b52;  --btn-text: #ece4f5;
+}
+.btn-newspaper {
+    --btn-light: #f5f2e9;   --btn-dark: #8b0000;   --btn-border: #8b0000;
+    --btn-shadow: #6b6b6b;  --btn-hover: #6b6b6b;  --btn-text: #1a1a1a;
+}
+.btn-Rosita {
+    --btn-light: #ffffff;   --btn-dark: #e8879e;   --btn-border: #e8879e;
+    --btn-shadow: #f4c6d1;  --btn-hover: #f4c6d1;  --btn-text: #4a2c33;
+}
+
+/* Customização do Elemento Select 3D */
+.select-3d-wrapper select {
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    color: inherit !important;
+    border: none !important;
+    outline: none !important;
+    font-family: 'Rubik', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.5px !important;
+    padding: 0 1em !important;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-3d-wrapper::after {
+    content: '▼';
+    font-size: 8px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: inherit;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* ================= 5. PAINEL DE CONTROLES SUPERIOR ================= */
+.main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 20px;
 }
 
-/* ================= CONTROLES MODERNOS ================= */
 .controls {
     padding: 12px;
     border-radius: 12px;
@@ -97,37 +251,36 @@ body {
     justify-content: center;
 }
 
-select, button {
+.controls select, .controls button {
+    font-family: 'Rubik', sans-serif;
     font-weight: 500;
     padding: 8px 14px;
     border-radius: 6px;
-    border: 1px solid var(--accent-muted);
-    background: var(--bg-dark);
-    color: var(--text-light);
+    border: 1px solid #b18597;
+    background: #fff;
+    color: #382b22;
     font-size: 13px;
     cursor: pointer;
 }
 
-select:focus, button:hover {
-    background: var(--accent);
-    color: var(--bg-dark);
+.controls select:focus, .controls button:hover {
+    background: #ffe3e2;
 }
 
-/* ================= STORY CANVAS (EDITORIAL) ================= */
+/* ================= 6. STORY CANVAS & TEXTURAS ================= */
+#canvas-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #story-canvas {
     width: 360px;
     height: 640px;
-    background:
-        radial-gradient(
-            circle at top right,
-            color-mix(in srgb, var(--accent) 30%, transparent),
-            transparent 65%
-        ),
-        linear-gradient(
-            180deg,
-            var(--bg-card),
-            var(--bg-dark)
-        );
+    background-color: var(--bg-dark);
+    background-image: var(--bg-texture, none);
+    background-repeat: repeat;
+    background-size: 12px 12px;
     color: var(--text-light);
     padding: 35px 25px 25px 25px;
     display: flex;
@@ -137,7 +290,20 @@ select:focus, button:hover {
     box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
 
-/* CABEÇALHO ESTILO REVISTA */
+/* Classes Utilitárias de Texturas Dinâmicas */
+#story-canvas.txt-grid {
+    background-image: 
+        repeating-linear-gradient(0deg, color-mix(in srgb, var(--accent) 5%, transparent) 0px, color-mix(in srgb, var(--accent) 5%, transparent) 1px, transparent 1px, transparent 14px),
+        repeating-linear-gradient(90deg, color-mix(in srgb, var(--accent) 5%, transparent) 0px, color-mix(in srgb, var(--accent) 5%, transparent) 1px, transparent 1px, transparent 14px);
+}
+
+#story-canvas.txt-dots {
+    background-image: radial-gradient(color-mix(in srgb, var(--accent) 10%, transparent) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+}
+
+/* ================= 7. COMPONENTES INTERNOS DO CANVAS ================= */
+/* Cabeçalho */
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -153,7 +319,6 @@ select:focus, button:hover {
 }
 
 .header h1 {
-    font-family: var(--font-main);
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -168,23 +333,20 @@ select:focus, button:hover {
     border-bottom: 1px solid var(--accent-muted);
     padding: 2px 15px;
     margin-top: 8px;
-    
     letter-spacing: 2px;
 }
 
-/* GRID DE 4 COLUNAS MANTIDO */
+/* Grid de Livros */
 .books-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px 8px;
-    
     margin-bottom: auto;
     padding: 10px 0;
 }
 
 .book {
     position: relative;
-    
 }
 
 .book img {
@@ -192,10 +354,9 @@ select:focus, button:hover {
     aspect-ratio: 2/3;
     object-fit: cover;
     border-radius: 2px;
-    
 }
 
-/* BADGES MINIMALISTAS */
+/* Badges de Avaliação */
 .badge {
     position: absolute;
     bottom: -5px;
@@ -205,7 +366,7 @@ select:focus, button:hover {
     align-items: center;
     gap: 2px;
     background: var(--bg-card);
-    color: #ffc506; /* dourado */
+    color: gold;
     font-size: 12px;
     font-weight: 500;
     padding: 2px 5px;
@@ -218,10 +379,9 @@ select:focus, button:hover {
     font-size: 9px;
 }
 
-/* PAINEL DE ESTATÍSTICAS (SUTIL E CONCISO) */
+/* Painel de Estatísticas */
 .stats-panel {
-    
-    padding-top: 12px;
+    padding-top: 1px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -233,58 +393,84 @@ select:focus, button:hover {
 
 .stat-val {
     font-family: 'Cinzel', serif;
-    font-size: 16px;
+    font-size: 20px;
     color: var(--text-light);
     font-weight: bold;
 }
 
 .stat-lbl {
-    font-size: 9px;
+    font-size: 12px;
     text-transform: uppercase;
     color: var(--accent);
     margin-top: 2px;
 }
 </style>
+
 </head>
 
-<body class="theme-coffee">
+<body>
 
-<div class="controls">
-    <select id="selectYear" onchange="updateStory()"></select>
-    <select id="selectMonth" onchange="updateStory()"></select>
+<div class="app-layout">
+
+    <!-- COLUNA LATERAL DE TEMAS -->
+    <aside class="theme-sidebar">
+        <h2>Temas</h2>
+        <div class="theme-btn-group">
+            <button class="theme-btn btn-coffee active" onclick="changeTheme('theme-coffee', this)">Coffee</button>
+            <button class="theme-btn btn-rosegold" onclick="changeTheme('theme-rosegold', this)">Rose Gold</button>
+            <button class="theme-btn btn-Roxito" onclick="changeTheme('theme-Roxito', this)">Roxito</button>
+            <button class="theme-btn btn-newspaper" onclick="changeTheme('theme-newspaper', this)">Newspaper</button>
+            <button class="theme-btn btn-Rosita" onclick="changeTheme('theme-Rosita', this)">Rosita</button>
+        </div>
+<div class="control-group" style="width: 100%; max-width: 175px; margin: 0 auto;">
+    <label style="font-family: 'Rubik', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #a3988c; display: block; margin-bottom: 12px; text-align: center; font-weight: 700;">Textura</label>
     
-    <!-- Seletor atualizado apenas com os temas requisitados -->
-    <select id="selectTheme" onchange="changeTheme()">
-        <option value="theme-coffee">Coffee</option>
-        <option value="theme-Ocean">Ocean</option>
-        <option value="theme-velvet">Velvet</option>
-        <option value="theme-lavender">Lavender</option>
-        <option value="theme-pastel-rainbow">Pastel Rainbow</option>
-    </select>
-
-    <button onclick="updateStory()">Atualizar</button>
-    <button onclick="downloadImage()">Salvar Capa</button>
-    <button onclick="downloadYear()">Exportar Ano</button>
+    <!-- O container simula o botão 3D e o select fica invisível por cima dele -->
+    <div class="theme-btn select-3d-wrapper" style="padding: 0; height: 32px;">
+        <select id="texture-select" onchange="changeTexture(this.value)">
+            <option value="txt-none">Nenhuma</option>
+            <option value="txt-grid">Quadriculado</option>
+            <option value="txt-dots">Pontilhado</option>
+        </select>
+    </div>
 </div>
+</div>
+    </aside>
 
-<div id="story-canvas">
-    <div class="header">
-        <span class="sub">Leituras do mês</span>
-        <h1 id="displayMonth"></h1>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="main-content">
+
+        <div class="controls">
+            <select id="selectYear" onchange="updateStory()"></select>
+            <select id="selectMonth" onchange="updateStory()"></select>
+            <button onclick="downloadImage()">Salvar Capa</button>
+            <button onclick="downloadYear()">Exportar Ano</button>
+        </div>
+
+        <div id="canvas-wrapper" class="theme-coffee">
+            <div id="story-canvas">
+                <div class="header">
+                    <span class="sub">Leituras do mês</span>
+                    <h1 id="displayMonth"></h1>
+                </div>
+
+                <div id="booksGrid" class="books-grid"></div>
+
+                <div id="statsPanel" class="stats-panel">
+                    <div class="stat-box">
+                        <div class="stat-val" id="statBooks">0</div>
+                        <div class="stat-lbl">Livros</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val" id="statPages">0</div>
+                        <div class="stat-lbl">Páginas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div id="booksGrid" class="books-grid"></div>
-
-    <div id="statsPanel" class="stats-panel">
-        <div class="stat-box">
-            <div class="stat-val" id="statBooks">0</div>
-            <div class="stat-lbl">Livros</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-val" id="statPages">0</div>
-            <div class="stat-lbl">Páginas</div>
-        </div>
-    </div>
 </div>
 
 <script>
@@ -293,11 +479,18 @@ let currentFiltered = [];
 const monthsNames = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 
 async function init() {
-    const res = await fetch('books.json');
-    allBooks = await res.json();
+    try {
+        const res = await fetch('books.json');
+        allBooks = await res.json();
+    } catch(e) {
+        // Mock fallback para testes locais rápidos
+        allBooks = [
+            { "YEAR": 2026, "MONTH": "Julho", "CAPA": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=150", "PAGES": 320, "RATING": 4.5, "FAV": "YES" }
+        ];
+    }
 
     const years = [...new Set(allBooks.map(b => b.YEAR))].sort((a, b) => b - a);
-    
+
     years.forEach(y => selectYear.innerHTML += `<option value="${y}">${y}</option>`);
     monthsNames.forEach(m => selectMonth.innerHTML += `<option value="${m}">${m}</option>`);
 
@@ -310,8 +503,11 @@ async function init() {
     updateStory();
 }
 
-function changeTheme() {
-    document.body.className = document.getElementById('selectTheme').value;
+function changeTheme(themeClass, btnEl) {
+    document.getElementById('canvas-wrapper').className = themeClass;
+
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    btnEl.classList.add('active');
 }
 
 function getStars(rating) {
@@ -331,6 +527,18 @@ function updateStory() {
     currentFiltered = allBooks.filter(b => b.YEAR === year && b.MONTH === month);
 
     renderBooks(currentFiltered.slice(0, 12));
+}
+
+function changeTexture(textureClass) {
+    const canvas = document.getElementById('story-canvas');
+    
+    // Remove todas as possíveis classes de textura anteriores
+    canvas.classList.remove('txt-none', 'txt-grid', 'txt-dots', 'txt-lines-h', 'txt-lines-v', 'txt-waves');
+    
+    // Adiciona a nova classe selecionada
+    if (textureClass !== 'txt-none') {
+        canvas.classList.add(textureClass);
+    }
 }
 
 function renderBooks(list) {
