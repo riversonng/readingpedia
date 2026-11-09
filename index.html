@@ -494,6 +494,8 @@ select:focus{
     <button id="flashs">📅</button>
     <button id="story">👁️‍🗨️</button>
     <button id="metrics">🌼</button>
+    <button id="andamento">📖 Em andamento</button>
+  </div>
 </header>
 
 <div class="controls">
@@ -943,7 +945,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   document.body.className = localStorage.getItem("selectedTheme") || "theme-dark";
 });
 
-["index","flashs","tables","story","metrics"].forEach(id=>{
+["index","flashs","tables","story","metrics","andamento"].forEach(id=>{
   document.getElementById(id)?.addEventListener("click",()=> location.href = id+".html");
 });
 
